@@ -1,43 +1,14 @@
-// import { useTask, Task } from "../context/TaskContext";
-// import { useState } from "react";
-// import TaskForm from "./TaskForm";
-
-// export default function TaskList() {
-// 	const { tasks, deleteTask, toggleTask } = useTask();
-// 	const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
-
-// 	return (
-// 		<div className="w-full max-w-md">
-// 			{taskToEdit && <TaskForm closeForm={() => setTaskToEdit(null)} taskToEdit={taskToEdit} />}
-
-// 			{tasks.map((task) => (
-// 				<div key={task.id} className="bg-gray-700 p-3 mb-2 rounded">
-// 					<h3 className="font-bold">{task.title}</h3>
-// 					<p>{task.description}</p>
-// 					<button onClick={() => toggleTask(task.id)} className="bg-green-500 text-white px-4 py-2 rounded">
-// 						{task.completed ? "Desmarcar" : "Completar"}
-// 					</button>
-// 					<button onClick={() => setTaskToEdit(task)} className="mr-2 bg-yellow-500 text-white p-1 rounded">
-// 						Editar
-// 					</button>
-// 					<button onClick={() => deleteTask(task.id)} className="bg-red-500 text-white p-1 rounded">
-// 						Eliminar
-// 					</button>
-// 				</div>
-// 			))}
-// 		</div>
-// 	);
-// }
-
 import { useTask, Task } from "../context/TaskContext";
 import { useFilter } from "../context/FilterContext";
 import { useState } from "react";
 import TaskForm from "./TaskForm";
+import Modal from "./Modal";
 
 export default function TaskList() {
 	const { tasks, deleteTask, toggleTask } = useTask();
 	const { filters, setFilters } = useFilter();
 	const [taskToEdit, setTaskToEdit] = useState<Task | null>(null);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const filteredTasks = tasks.filter((task) => {
 		if (filters.status !== "all" && (filters.status === "completed") !== task.completed) return false;
@@ -46,6 +17,12 @@ export default function TaskList() {
 		if (filters.searchTerm && !task.title.toLowerCase().includes(filters.searchTerm.toLowerCase()) && !task.description.toLowerCase().includes(filters.searchTerm.toLowerCase())) return false;
 		return true;
 	});
+
+	// Función para abrir el modal con la tarea seleccionada
+	const handleEditClick = (task: Task) => {
+		setTaskToEdit(task);
+		setIsModalOpen(true);
+	};
 
 	return (
 		<div className="w-full max-w-md">
@@ -79,20 +56,25 @@ export default function TaskList() {
 			</div>
 
 			{filteredTasks.map((task) => (
-				<div key={task.id} className="bg-gray-700 p-3 mb-2 rounded">
+				<div key={task.id} className="bg-gray-700 p-3 mb-2 rounded" onClick={() => handleEditClick(task)}>
 					<h3 className="font-bold">{task.title}</h3>
 					<p>{task.description}</p>
 					<button onClick={() => toggleTask(task.id)} className="bg-green-500 text-white px-4 py-2 rounded">
 						{task.completed ? "Desmarcar" : "Completar"}
 					</button>
-					<button onClick={() => setTaskToEdit(task)} className="mr-2 bg-yellow-500 text-white p-1 rounded">
+					{/* <button onClick={() => setTaskToEdit(task)} className="mr-2 bg-yellow-500 text-white p-1 rounded">
 						Editar
-					</button>
+					</button> */}
 					<button onClick={() => deleteTask(task.id)} className="bg-red-500 text-white p-1 rounded">
 						Eliminar
 					</button>
 				</div>
 			))}
+
+			{/* Modal para editar tareas */}
+			<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+				{taskToEdit && <TaskForm closeForm={() => setIsModalOpen(false)} taskToEdit={taskToEdit} />}
+			</Modal>
 		</div>
 	);
 }
