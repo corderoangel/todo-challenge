@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import TaskForm from "./components/TaskForm";
 import TaskList from "./components/TaskList";
+import { FilterProvider } from "./context/FilterContext";
 
 export default function App() {
 	const [isFormOpen, setIsFormOpen] = useState(false);
@@ -16,7 +17,11 @@ export default function App() {
 
 			{isFormOpen && <TaskForm closeForm={() => setIsFormOpen(false)} />}
 
-			<TaskList />
+			<FilterProvider>
+				{" "}
+				{/* Agregar FilterProvider aquí */}
+				<TaskList />
+			</FilterProvider>
 		</div>
 	);
 }
