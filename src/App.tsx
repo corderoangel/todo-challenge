@@ -10,14 +10,14 @@ export default function App() {
 
 	return (
 		<FilterProvider>
-			<div className="min-h-screen bg-gray-900 text-white flex flex-col items-center p-4">
-				<h1 className="text-3xl font-bold mb-4">Lista de Tareas ✅</h1>
+			<div className="min-h-screen text-black flex flex-col items-center p-4">
+				<h1 className="text-3xl font-bold mb-4">TODO - CHALLENGE ✅</h1>
 
-				<button onClick={() => setIsFormOpen(!isFormOpen)} className="mb-4 bg-blue-500 text-white px-4 py-2 rounded">
+				<button onClick={() => setIsFormOpen(!isFormOpen)} className="w-34 h-10 bg-blue-500 text-lg text-white rounded absolute bottom-5 right-5 cursor-pointer hover:bg-blue-700">
 					{isFormOpen ? "Cerrar Formulario" : "Agregar Tarea"}
 				</button>
 
-				{isFormOpen && <TaskForm closeForm={() => setIsFormOpen(false)} />}
+				{/* {isFormOpen && <TaskForm closeForm={() => setIsFormOpen(false)} />} */}
 
 				<TaskList />
 				{/* Modal para el formulario */}
