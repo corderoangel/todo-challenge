@@ -1,29 +1,7 @@
-// import { useContext } from "react";
-// import { TaskContext, Task } from "../context/TaskContext";
-
-// interface Props {
-// 	task: Task;
-// }
-
-// export default function TaskItem({ task }: Props) {
-// 	const { toggleTask, deleteTask } = useContext(TaskContext)!;
-
-// 	return (
-// 		<div className="p-4 border rounded-lg shadow-lg bg-gray-800 text-white">
-// 			<h2 className="text-xl font-bold">{task.title}</h2>
-// 			<p>{task.description}</p>
-// 			<p>Prioridad: {task.priority}</p>
-// 			<button onClick={() => toggleTask(task.id)} className="bg-green-500 text-white px-4 py-2 rounded">
-// 				{task.completed ? "Desmarcar" : "Completar"}
-// 			</button>
-// 			<button onClick={() => deleteTask(task.id)} className="bg-red-500 text-white px-4 py-2 rounded ml-2">
-// 				Eliminar
-// 			</button>
-// 		</div>
-// 	);
-// }
-
 import { Task } from "../context/TaskContext";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { FaEdit } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 
 interface TaskItemProps {
 	task: Task;
@@ -34,18 +12,20 @@ interface TaskItemProps {
 
 export default function TaskItem({ task, toggleTask, handleEditClick, deleteTask }: TaskItemProps) {
 	return (
-		<div key={task.id} className="bg-gray-700 p-3 mb-2 rounded">
+		<div key={task.id} className="bg-gray-300 rounded-lg shadow">
 			<h3 className="font-bold">{task.title}</h3>
 			<p>{task.description}</p>
-			<button onClick={() => toggleTask(task.id)} className="bg-green-500 text-white px-4 py-2 rounded">
-				{task.completed ? "Desmarcar" : "Completar"}
-			</button>
-			<button onClick={() => handleEditClick(task)} className="mr-2 bg-yellow-500 text-white p-1 rounded">
-				Editar
-			</button>
-			<button onClick={() => deleteTask(task.id)} className="bg-red-500 text-white p-1 rounded">
-				Eliminar
-			</button>
+			<div className="flex justify-end gap-2">
+				<button onClick={() => toggleTask(task.id)} className="w-10 h-10 bg-green-400 text-white rounded-lg flex items-center justify-center cursor-pointer">
+					{task.completed ? "Desmarcar" : <FaCheck className="text-black" />}
+				</button>
+				<button onClick={() => handleEditClick(task)} className="w-10 h-10 bg-yellow-300 text-white rounded-lg flex items-center justify-center cursor-pointer">
+					<FaEdit className="text-black" />
+				</button>
+				<button onClick={() => deleteTask(task.id)} className="w-10 h-10 bg-red-500 text-white rounded-lg flex items-center justify-center cursor-pointer">
+					<FaRegTrashAlt className="text-black" />
+				</button>
+			</div>
 		</div>
 	);
 }
