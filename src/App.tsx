@@ -8,14 +8,22 @@ import Modal from "./components/Modal";
 export default function App() {
 	const [isFormOpen, setIsFormOpen] = useState(false);
 
-	// const tasks = Array.from({ length: 10 }, (_, i) => ({
-	// 	id: crypto.randomUUID(),
-	// 	title: `Task ${i + 1}`,
-	// 	description: `Description of task ${i + 1}`,
-	// 	completed: false, // Todas las tareas están sin completar
-	// 	priority: ["high", "medium", "low"][Math.floor(Math.random() * 3)],
-	// 	category: ["work", "personal", "study"][Math.floor(Math.random() * 3)],
-	// }));
+	// const tasks = Array.from({ length: 10 }, (_, i) => {
+	// 	const today = new Date();
+	// 	const dueDate = new Date(today);
+	// 	dueDate.setDate(today.getDate() + Math.floor(Math.random() * 10) + 1); // Fecha de vencimiento aleatoria entre 1 y 10 días después
+
+	// 	return {
+	// 		id: crypto.randomUUID(),
+	// 		title: `Task ${i + 1}`,
+	// 		description: `Description of task ${i + 1}`,
+	// 		completed: false, // Todas las tareas están sin completar
+	// 		priority: ["high", "medium", "low"][Math.floor(Math.random() * 3)],
+	// 		category: ["work", "personal", "study"][Math.floor(Math.random() * 3)],
+	// 		dueDate: dueDate.toISOString().split("T")[0], // Formato YYYY-MM-DD
+	// 		createdAt: today.toISOString().split("T")[0], // Fecha de creación en el mismo formato
+	// 	};
+	// });
 
 	// localStorage.setItem("tasks", JSON.stringify(tasks));
 

@@ -28,7 +28,7 @@ export default function TaskList() {
 	};
 
 	return (
-		<div className="w-full max-w-lg p-4 border border-blue-500">
+		<div className="w-full max-w-lg p-4">
 			{/* Barra de búsqueda y filtros */}
 			<SearchBar filters={filters} setFilters={setFilters} />
 
