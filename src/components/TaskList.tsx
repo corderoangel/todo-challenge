@@ -28,14 +28,16 @@ export default function TaskList() {
 	};
 
 	return (
-		<div className="w-full max-w-lg">
+		<div className="w-full max-w-lg p-4 border border-blue-500">
 			{/* Barra de búsqueda y filtros */}
 			<SearchBar filters={filters} setFilters={setFilters} />
 
 			{/* Lista de tareas */}
-			{filteredTasks.map((task) => (
-				<TaskItem key={task.id} task={task} toggleTask={toggleTask} handleEditClick={handleEditClick} deleteTask={deleteTask} />
-			))}
+			<div className="space-y-4 mt-4">
+				{filteredTasks.map((task) => (
+					<TaskItem key={task.id} task={task} toggleTask={toggleTask} handleEditClick={handleEditClick} deleteTask={deleteTask} />
+				))}
+			</div>
 
 			{/* Modal para editar tareas */}
 			<Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>

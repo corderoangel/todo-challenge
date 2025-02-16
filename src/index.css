@@ -2,9 +2,10 @@
 
 /* Reset básico */
 * {
-	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
 }
 
-/* Estilos globales opcionales */
+body,
+html {
+	padding: 0;
+}
