@@ -33,7 +33,7 @@ export default function TaskList() {
 			<SearchBar filters={filters} setFilters={setFilters} />
 
 			{/* Lista de tareas */}
-			<div className="space-y-4 mt-4">
+			<div className="space-y-4 mt-4 mb-12">
 				{filteredTasks.map((task) => (
 					<TaskItem key={task.id} task={task} toggleTask={toggleTask} handleEditClick={handleEditClick} deleteTask={deleteTask} />
 				))}

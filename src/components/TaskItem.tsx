@@ -12,9 +12,9 @@ interface TaskItemProps {
 
 export default function TaskItem({ task, toggleTask, handleEditClick, deleteTask }: TaskItemProps) {
 	return (
-		<div key={task.id} className="w-full max-w-lg bg-gray-300 rounded-lg shadow p-4">
+		<div key={task.id} className="w-full max-w-lg bg-gray-200 rounded-lg shadow p-4">
 			<h3 className="font-bold px-2 py-1 mb-2">{task.title}</h3>
-			<p className="px-2 py-1 mb-2">{task.description}</p>
+			<p className="px-2 py-1 mb-2 break-words">{task.description}</p>
 			{/* Nueva sección: prioridad, categoría y fecha */}
 			<div className="p-2 text-sm text-gray-700">
 				<p>
