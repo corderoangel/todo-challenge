@@ -28,13 +28,19 @@ export default function TaskItem({ task, toggleTask, handleEditClick, deleteTask
 				</p>
 			</div>
 			<div className="flex justify-end gap-2">
-				<button onClick={() => toggleTask(task.id)} className="w-10 h-10 bg-green-400 text-black rounded-lg flex items-center justify-center cursor-pointer">
-					{task.completed ? "Desmarcar" : <FaCheck className="text-black" />}
+				<button
+					onClick={() => toggleTask(task.id)}
+					disabled={task.completed}
+					className={`w-10 h-10 rounded-lg flex items-center justify-center cursor-pointer ${task.completed ? "bg-gray-400 cursor-not-allowed" : "bg-green-500 hover:bg-green-700"}`}>
+					<FaCheck className="text-black" />
 				</button>
-				<button onClick={() => handleEditClick(task)} className="w-10 h-10 bg-yellow-300 text-black rounded-lg flex items-center justify-center cursor-pointer">
+				<button
+					onClick={() => handleEditClick(task)}
+					disabled={task.completed}
+					className={`w-10 h-10 rounded-lg flex items-center justify-center cursor-pointer ${task.completed ? "bg-gray-400 cursor-not-allowed" : "bg-yellow-300 hover:bg-yellow-500"}`}>
 					<FaEdit className="text-black" />
 				</button>
-				<button onClick={() => deleteTask(task.id)} className="w-10 h-10 bg-red-500 text-black rounded-lg flex items-center justify-center cursor-pointer">
+				<button onClick={() => deleteTask(task.id)} className="w-10 h-10 bg-red-500 hover:bg-red-700 text-black rounded-lg flex items-center justify-center cursor-pointer">
 					<FaRegTrashAlt className="text-black" />
 				</button>
 			</div>
